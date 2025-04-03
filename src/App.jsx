@@ -1,11 +1,13 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import './App.css';
-import './styles/Global.css';
+
+
+
 
 function App() {
   return (
     <div>
+       <h1>Mi Layout</h1>  
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
