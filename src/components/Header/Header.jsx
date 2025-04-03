@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
-import logoPlaceholder from '../../assets/Logo.svg'; 
+import logoPlaceholder from '../../assets/Logo.png'; 
 
 function Header() {
   const location = useLocation();
