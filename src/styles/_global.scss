@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
+@import './variables';
+@import './mixins';
 
 * {
   box-sizing: border-box;
@@ -9,8 +11,8 @@
 body {
   font-family: 'Lato', sans-serif;
   line-height: 1.6;
-  color: #0f110c;
-  background-color: #CECCCC;
+  color: $text-color;
+  background-color: $background-color;
   text-align: center;
 }
 
@@ -25,17 +27,9 @@ p {
   margin-bottom: 10px;
 }
 
-/* Estilos generales para botones */
 button {
-    background: #FDECEF;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background: #B0899D;
-  }
+  @include button-style(
+    $background-color: #FDECEF,
+    $text-color: #0f110c 
+  ); 
+}

@@ -1,0 +1,210 @@
+// components/Header/Header.module.scss
+
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.header {
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+
+  .leftSection {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.8rem; 
+    border: 1px solid $button-secondary; 
+    border-radius: $border-radius; 
+    background-color: $button-primary; // Agregamos color de fondo
+    color: $button-secondary-text; 
+    margin-bottom: 0;
+    width: auto;
+    flex-wrap: nowrap; 
+
+    .logo {
+      font-size: 1.3rem;
+      margin: 0;
+      color: inherit; // Heredamos el color del padre
+    }
+
+    .logoImage {
+      width: 30px;
+      height: auto;
+    }
+  }
+
+  .centerSection {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+    align-self: center; 
+  }
+
+  .searchContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  .searchInput {
+    width: calc(100% - 10px);
+    padding: 0.4rem 0.8rem;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    font-size: $font-size-base;
+  }
+
+  .tagsList {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tagButton {
+    @include button-style($button-secondary, $button-secondary-text, 0.2rem 0.5rem, 15px);
+    &:hover {
+      background-color: $button-secondary-hover;
+    }
+  }
+
+  .rightSection {
+    display: flex;
+    align-items: flex-start;
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .favButtonLink {
+    text-decoration: none;
+    width: auto;
+  }
+
+  .favButton {
+    @include button-style($button-primary, #0f110c, 0.8rem 1.5rem); 
+    min-width: 135px; 
+    text-align: center; 
+    &:hover {
+      background-color: $button-primary-hover;
+    }
+  }
+
+  @media (min-width: $screen-sm) {
+    padding: 0.75rem 2rem;
+    flex-wrap: nowrap;
+
+    .leftSection {
+      gap: 0.6rem;
+    }
+
+    .centerSection {
+      width: auto;
+      margin-top: 0;
+      padding: 0 1rem;
+    }
+
+    .searchInput {
+      font-size: 0.9rem;
+      padding: 0.6rem 1rem;
+    }
+
+    .tagsList {
+      justify-content: flex-start;
+      gap: 0.3rem;
+    }
+
+    .tagButton {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .rightSection {
+      width: auto;
+      justify-content: flex-end;
+
+      .favButton {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        width: auto;
+        text-align: initial;
+      }
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    padding: 1rem 3rem;
+
+    .leftSection {
+      gap: 0.8rem;
+
+      .logo {
+        font-size: 1.8rem;
+      }
+
+      .logoImage {
+        width: 45px;
+      }
+    }
+
+    .centerSection {
+      padding: 0 1.5rem;
+    }
+
+    .searchInput {
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+    }
+
+    .tagsList {
+      gap: 0.4rem;
+    }
+
+    .tagButton {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      margin-right: 2rem;
+    }
+  }
+
+  @media (min-width: $screen-lg) {
+    .leftSection {
+      .logo {
+        font-size: 2rem;
+      }
+
+      .logoImage {
+        width: 50px;
+      }
+    }
+
+    .centerSection {
+      .searchInput {
+        padding: 0.8rem 1.5rem;
+      }
+
+      .tagButton {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        margin-right: 3rem;
+      }
+    }
+
+    .rightSection {
+      .favButton {
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  }
+}
