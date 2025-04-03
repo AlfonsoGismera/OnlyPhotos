@@ -1,0 +1,98 @@
+.header {
+    background-color: #f8f8f8;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio entre las secciones */
+    align-items: center; /* Alinea verticalmente los elementos */
+  }
+  
+  /* Sección Izquierda */
+  .leftSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea el texto y la imagen a la izquierda */
+  }
+  
+  .logo {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .logoImage {
+    width: 50px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+  }
+  
+  /* Sección Central */
+  .centerSection {
+    flex-grow: 1; /* Permite que la sección central ocupe el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem; /* Añade un poco de espacio a los lados */
+  }
+  
+  .searchContainer {
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
+  
+  .searchInput {
+    width: calc(100% - 20px); /* Ajusta el ancho para el padding */
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .tagsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .tagItem {}
+  
+  .tagButton {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tagButton:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Sección Derecha */
+  .rightSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .favButtonLink {
+    text-decoration: none;
+  }
+  
+  .favButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .favButton:hover {
+    background-color: #0056b3;
+  }
