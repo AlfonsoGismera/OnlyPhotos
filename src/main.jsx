@@ -7,6 +7,6 @@ import AppRoutes from './router/Routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <AppRoutes /> {/* Renderiza el componente que contiene la configuración de las rutas */}
+    <AppRoutes /> 
   </BrowserRouter>
 );
