@@ -1,31 +1,33 @@
-// services/unsplashService.js
-
 import { createApi } from 'unsplash-js';
 
 const unsplash = createApi({
   accessKey: 'NycOqabIg11uxpFrmAsmOExL0IL0VIo8y_9s8JIetkM',
 });
 
-export const getRandomUnsplashImage = async () => {
+// 🔁 Mismo nombre, pero ahora hace una búsqueda con un tag
+export const getRandomUnsplashImage = async (query = 'cats') => {
   try {
-    const result = await unsplash.photos.getRandom({
-      count: 1,
+    const result = await unsplash.search.getPhotos({
+      query,
+      perPage: 15,
+      // orientation: 'landscape',
     });
 
-    if (result.response) {
-      // Verificar si la respuesta contiene una imagen
-      if (result.response[0].urls && result.response[0].urls.regular) {
-        return result.response[0].urls.regular;
-      } else {
-        console.error('La respuesta de Unsplash no contiene una URL de imagen válida.');
-        return null;
-      }
+    if (result.response && result.response.results.length > 0) {
+      return result.response.results.map((img) => ({
+        id: img.id,
+        urls: {
+          small: img.urls.small,
+          full: img.urls.full,
+        },
+        alt_description: img.alt_description || 'Imagen sin descripción',
+      }));
     } else {
-      console.error('Error al obtener la imagen de Unsplash:', result.errors);
+      console.error('No se encontraron imágenes para la búsqueda:', query);
       return null;
     }
   } catch (error) {
-    console.error('Error al obtener la imagen:', error);
+    console.error('Error al buscar imágenes:', error);
     return null;
   }
 };

@@ -33,3 +33,78 @@ button {
     $text-color: #0f110c 
   ); 
 }
+
+.gallery img { 
+  max-width: 100%;
+  margin-bottom: 0.5em;
+  display: block;
+  outline: 2px solid #ffff;
+  outline-offset: -10px;
+  cursor: pointer;
+}
+
+
+.gallery {
+  columns: 4 320px;
+  column-gap: 0.5em;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
+@import './variables';
+@import './mixins';
+
+* {
+  box-sizing: border-box;
+  margin: 0 ;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+  color: $text-color;
+  background-color: $background-color;
+  text-align: center;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+button {
+  @include button-style(
+    $background-color: #FDECEF,
+    $text-color: #0f110c
+  );
+}
+
+.gallery img {
+  max-width: 100%;
+  margin-bottom: 0.7em;
+  display: block;
+  outline: 2px solid #ffff;
+  outline-offset: -10px;
+  cursor: pointer;
+}
+
+
+.gallery {
+  columns: 4 320px;
+  column-gap: 0.5em;
+}
+
+// Estilos para el contenedor main
+.home-main {
+  padding: 20px; /* Ejemplo de espacio superior */
+  // padding-bottom: 20px; /* Ejemplo de espacio inferior */
+  /* Puedes añadir más estilos según necesites: */
+  /* padding-left: 15px; */
+  /* padding-right: 15px; */
+  /* margin: 0 auto; /* Centrar el contenido si tiene un ancho limitado */
+}
