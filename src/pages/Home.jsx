@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Gallery from '../components/gallery/Gallery';
 
 
+
 function Home() {
   return (
     <main className="home-main">

@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImages } from './gallerySlice';
-import { saveAs } from 'file-saver';
-import fondo_error from '../../assets/fondo_error.jpg'; // Importa la imagen de error
+import fondo_error from '../../assets/fondo_error.jpg';
+import ImageCard from '../imageCard/ImageCard';
 
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -28,11 +28,6 @@ const Gallery = () => {
   //   return () => window.removeEventListener('scroll', handleScroll);
   // }, [handleScroll]);
 
-  // Función para descargar la imagen
-  const handleDownload = (url) => {
-    saveAs(url, 'imagen.jpg');
-  };
-
   return (
     <div>
       <h1>Galería de Imágenes</h1>
@@ -40,17 +35,7 @@ const Gallery = () => {
       <div className="gallery">
         {images && images.length > 0 ? (
           images.map((img) => (
-            <div key={img.id}>
-              <img
-                src={img.urls.small} // Muestra la versión pequeña
-                alt={img.alt_description || 'Imagen'}
-                onClick={() => handleDownload(img.urls.full)}
-                onError={(e) => {
-                  e.target.onerror = null; // Previene bucles de error
-                  e.target.src = fondo_error; // Reemplaza la imagen por defecto
-                }}
-              />
-            </div>
+            <ImageCard key={img.id} img={img} />
           ))
         ) : (
           <p>No hay imágenes para mostrar.</p>
