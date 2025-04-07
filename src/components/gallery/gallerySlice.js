@@ -1,4 +1,3 @@
-// src/components/gallery/gallerySlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRandomUnsplashImage } from '../../services/unsplashService';
 
@@ -28,7 +27,6 @@ const gallerySlice = createSlice({
     error: null,
   },
   reducers: {
-    // Aquí puedes agregar más reducers si los necesitas
   },
   extraReducers: (builder) => {
     builder

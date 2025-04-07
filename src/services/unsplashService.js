@@ -10,7 +10,7 @@ export const getRandomUnsplashImage = async (query = 'cats') => {
     const result = await unsplash.search.getPhotos({
       query,
       perPage: 15,
-      // orientation: 'landscape',
+      //  orientation: 'landscape',
     });
 
     if (result.response && result.response.results.length > 0) {
