@@ -39,7 +39,6 @@ button {
   column-gap: 0.5em;
   
 }
-
 .gallery img { 
   max-width: 100%;
   margin-bottom: 0.5em;
@@ -47,10 +46,37 @@ button {
   outline: 2px solid #ffff;
   outline-offset: -10px;
   cursor: pointer;
+  
 }
 
 
 .home-main {
+  padding: 20px; 
+
+}
+// Usamos grid para favoritos  ya que ahora no queremos que tenga distintos tamaños
+.favourites-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 0.5em;
+}
+
+.favourites-gallery > div {
+  height: 200px; 
+  overflow: hidden; 
+}
+
+.favourites-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  outline: 2px solid #ffff;
+  outline-offset: -10px;
+  cursor: pointer;
+}
+
+.favourites-page {
   padding: 20px; 
 
 }
