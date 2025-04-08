@@ -1,4 +1,3 @@
-// src/features/favourites/favouritesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 // Carga las imágenes favoritas guardadas en localStorage o usa un array vacío

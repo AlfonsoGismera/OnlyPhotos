@@ -1,4 +1,3 @@
-// src/components/ImageCard.jsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LikeButton from '../buttons/ButtonLike';
@@ -14,20 +13,22 @@ const ImageCard = ({ img, isFavourite, onDescriptionSave }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
+
   // Like
   const handleLike = (e) => {
     e.stopPropagation(); // Evita que se abra el modal al hacer clic en like
     dispatch(addFavourite(img));
     console.log(`Liked image with ID: ${img.id}`);
   };
+
   // Delete
   const handleDelete = (e) => {
     e.stopPropagation(); // Evitar que se abra el modal al hacer clic en Delete
     dispatch(removeFavourite(img.id));
     console.log(`Deleted image with ID: ${img.id}`);
   };
-  // Edit description
 
+  // Edit description
   return (
     <div
       className="image-card-container"

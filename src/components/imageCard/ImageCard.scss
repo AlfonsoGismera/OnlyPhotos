@@ -62,11 +62,11 @@
   
   .overlay button,
   .overlay a {
-    /* Los botones deben seguir recibiendo clics */
+    /* Los botones deben seguir recibiendo los clics */
     pointer-events: auto;
   }
 
-  /* Overlay inferior para modo Favoritos con descripción */
+  /* Overlay inferior para  Favoritos con descripción */
 .description-overlay {
   position: absolute;
   bottom: 0;

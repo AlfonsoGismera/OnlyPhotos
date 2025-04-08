@@ -4,7 +4,7 @@ const unsplash = createApi({
   accessKey: 'NycOqabIg11uxpFrmAsmOExL0IL0VIo8y_9s8JIetkM',
 });
 
-// 🔁 Mismo nombre, pero ahora hace una búsqueda con un tag
+//  búsqueda con un tag
 export const getRandomUnsplashImage = async (query = 'cats') => {
   try {
     const result = await unsplash.search.getPhotos({

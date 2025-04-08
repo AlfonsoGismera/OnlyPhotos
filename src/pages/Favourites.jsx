@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ImageCard from '../components/imageCard/ImageCard';
 import { updateFavouriteDescription, removeFavourite } from '../features/favourites/favouritesSlice';
-// import './Favourites.scss'; 
+
 
 function Favourites() {
   const dispatch = useDispatch();
