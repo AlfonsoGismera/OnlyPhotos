@@ -5,6 +5,7 @@ import './ImageModal.scss';
 
 const ImageModal = ({ image, isFavourite, initialDescription, onSave, onClose }) => {
   const [description, setDescription] = useState(initialDescription || '');
+  const maxLength = 80; // Limita a un máximo de 80 caracteres para evitar desbordamiento
 
 
   useEffect(() => {
@@ -29,14 +30,17 @@ const ImageModal = ({ image, isFavourite, initialDescription, onSave, onClose })
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Editar descripción..."
+              maxLength={maxLength} 
             />
+            <p className="character-count">
+              {description.length} / {maxLength} caracteres
+            </p>
             <button
               onClick={() => {
                 onSave(description, image.id);
                 onClose();
               }}
-              className="btn-save"
-            >
+              className="btn-save">
               Guardar
             </button>
           </>
