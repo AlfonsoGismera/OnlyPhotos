@@ -4,7 +4,7 @@ import { fetchImages } from './gallerySlice';
 import fondo_error from '../../assets/fondo_error.jpg';
 import ImageCard from '../imageCard/ImageCard';
 
-const Gallery = () => {
+const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
   const { images, loading, error } = useSelector((state) => state.gallery);
 
@@ -29,18 +29,20 @@ const Gallery = () => {
   // }, [handleScroll]);
 
   return (
-    <div>
-      <h1>Galería de Imágenes</h1>
+    <div className="gallery">
       {error && <p>Error: {error}</p>}
-      <div className="gallery">
-        {images && images.length > 0 ? (
-          images.map((img) => (
-            <ImageCard key={img.id} img={img} />
-          ))
-        ) : (
-          <p>No hay imágenes para mostrar.</p>
-        )}
-      </div>
+      {images && images.length > 0 ? (
+        images.map((img) => (
+          <ImageCard
+            key={img.id}
+            img={img}
+            isFavourite={isFavourite}
+            onDescriptionSave={(newDesc) => onDescriptionSave(newDesc, img.id)}
+          />
+        ))
+      ) : (
+        <p>No hay imágenes para mostrar.</p>
+      )}
       {loading && <p>Cargando más imágenes...</p>}
     </div>
   );

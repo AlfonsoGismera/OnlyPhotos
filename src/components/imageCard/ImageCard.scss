@@ -41,3 +41,13 @@
       margin-left: auto; 
     }
   }
+  .overlay {
+    /* Permite que los clics pasen a través de la parte que no tenga hijos interactivos */
+    pointer-events: none;
+  }
+  
+  .overlay button,
+  .overlay a {
+    /* Los botones deben seguir recibiendo clics */
+    pointer-events: auto;
+  }

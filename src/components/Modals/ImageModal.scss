@@ -1,0 +1,52 @@
+/* src/components/modals/ImageModal.scss */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; 
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    text-align: center;
+  }
+  
+  .modal-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-content textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .modal-content .btn-save {
+    background-color: #09ab6a;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .modal-content .btn-save:hover {
+    background-color: #078e5b;
+  }
+  
