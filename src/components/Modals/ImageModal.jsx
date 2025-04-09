@@ -1,11 +1,10 @@
-// src/components/modals/ImageModal.jsx
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './ImageModal.scss';
 
 const ImageModal = ({ image, isFavourite, initialDescription, onSave, onClose }) => {
   const [description, setDescription] = useState(initialDescription || '');
-  const maxLength = 80; // Limita a un máximo de 80 caracteres para evitar desbordamiento
+  const maxLength = 60; // Limita a un máximo de 60 caracteres para evitar desbordamiento
 
 
   useEffect(() => {

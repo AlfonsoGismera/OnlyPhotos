@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchImages } from './gallerySlice';
-import fondo_error from '../../assets/fondo_error.jpg';
+import { fetchImages } from '../../redux/gallerySlice';
 import ImageCard from '../imageCard/ImageCard';
 
 const Gallery = ({ isFavourite = false, onDescriptionSave }) => {

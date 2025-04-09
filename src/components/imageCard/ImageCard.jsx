@@ -6,7 +6,7 @@ import DeleteButton from '../buttons/ButtonDelete';
 import EditButton from '../buttons/ButtonEdit';
 import ImageModal from '../modals/ImageModal';
 import fondo_error from '../../assets/fondo_error.jpg';
-import { addFavourite, removeFavourite } from '../../features/favourites/favouritesSlice';
+import { addFavourite, removeFavourite } from '../../redux/favouritesSlice';
 import './ImageCard.scss';
 
 const ImageCard = ({ img, isFavourite, onDescriptionSave }) => {
@@ -23,7 +23,7 @@ const ImageCard = ({ img, isFavourite, onDescriptionSave }) => {
 
   // Delete
   const handleDelete = (e) => {
-    e.stopPropagation(); // Evitar que se abra el modal al hacer clic en Delete
+    e.stopPropagation(); 
     dispatch(removeFavourite(img.id));
     console.log(`Deleted image with ID: ${img.id}`);
   };

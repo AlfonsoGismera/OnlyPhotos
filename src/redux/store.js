@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import galleryReducer from '../components/gallery/gallerySlice'; 
-import favouritesReducer from '../features/favourites/favouritesSlice';
+import galleryReducer from './gallerySlice'; 
+import favouritesReducer from './favouritesSlice';
 
 const store = configureStore({
   reducer: {

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getRandomUnsplashImage } from '../../services/unsplashService';
+import { getRandomUnsplashImage } from '../services/unsplashService';
 
 // Thunk que recibe un tag (query) y busca imágenes relacionadas
 export const fetchImages = createAsyncThunk('gallery/fetchImages', async (tag = 'nature') => {
