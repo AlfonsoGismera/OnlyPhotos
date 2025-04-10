@@ -7,10 +7,10 @@ const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
   const { images, loading, error } = useSelector((state) => state.gallery);
 
-  // Cargar imágenes al montar el componente si aún no hay imágenes
+  // Al montar, si no hay imágenes, usa el tag "cats".
   useEffect(() => {
     if (images.length === 0) {
-      dispatch(fetchImages());
+      dispatch(fetchImages({ tag: 'cats', reset: true }));
     }
   }, [dispatch, images.length]);
 

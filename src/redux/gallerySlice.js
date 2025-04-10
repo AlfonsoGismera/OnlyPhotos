@@ -1,23 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRandomUnsplashImage } from '../services/unsplashService';
 
-// Thunk que recibe un tag (query) y busca imágenes relacionadas
-export const fetchImages = createAsyncThunk('gallery/fetchImages', async (tag = 'nature') => {
-  const images = await getRandomUnsplashImage(tag);
+// Thunk que recibe un objeto { tag, reset } y busca imágenes usando getRandomUnsplashImage.
+export const fetchImages = createAsyncThunk(
+  'gallery/fetchImages',
+  async ({ tag = 'cats', reset = false } = {}) => { 
+    const images = await getRandomUnsplashImage(tag);
 
-  if (!images || images.length === 0) {
-    return [{
-      id: 'error',
-      urls: {
-        small: '/src/assets/fondo_error.jpg',
-        full: '/src/assets/fondo_error.jpg',
-      },
-      alt_description: 'Error al cargar imagen',
-    }];
+    if (!images || images.length === 0) {
+      return [{
+        id: 'error',
+        urls: {
+          small: '/src/assets/fondo_error.jpg',
+          full: '/src/assets/fondo_error.jpg',
+        },
+        alt_description: 'Error al cargar imagen',
+      }];
+    }
+    return images;
   }
-
-  return images;
-});
+);
 
 const gallerySlice = createSlice({
   name: 'gallery',
@@ -27,6 +29,7 @@ const gallerySlice = createSlice({
     error: null,
   },
   reducers: {
+    // Reducers adicionales si los necesitas.
   },
   extraReducers: (builder) => {
     builder
@@ -35,7 +38,16 @@ const gallerySlice = createSlice({
         state.error = null;
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
-        state.images = [...state.images, ...action.payload];
+        // Usamos optional chaining para leer reset de forma segura.
+        const shouldReset = action.meta?.arg?.reset;
+        if (shouldReset) {
+          state.images = action.payload;
+        } else {
+          // Concatenar sin duplicados
+          const existingIds = new Set(state.images.map(img => img.id));
+          const newImages = action.payload.filter(img => !existingIds.has(img.id));
+          state.images = [...state.images, ...newImages];
+        }
         state.loading = false;
         localStorage.setItem('galleryImages', JSON.stringify(state.images));
       })
