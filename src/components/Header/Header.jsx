@@ -46,22 +46,18 @@ function Header() {
 // Función para disparar la búsqueda desde el input
 const handleSearch = () => {
   if (searchQuery.trim()) {
-    // Se reinicia la galería con el nuevo tag
     dispatch(fetchImages({ tag: searchQuery, reset: true }));
   }
 };
-
+const handleTagClick = (tag) => {
+  dispatch(fetchImages({ tag, reset: true }));
+};
 // Dispara la búsqueda cuando el usuario presiona Enter en el input
 const handleKeyDown = (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
     handleSearch();
   }
-};
-
-// Función para buscar por tag cuando se hace clic en un botón de etiqueta
-const handleTagClick = (tag) => {
-  dispatch(fetchImages({ tag, reset: true }));
 };
 
 return (
@@ -72,32 +68,32 @@ return (
     </div>
 
     <div className={styles.centerSection}>
-      <div className={styles.searchContainer}>
-        <input
-          type="text"
-          placeholder="Buscar imágenes... 🔎"
-          className={styles.searchInput}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button className={styles.searchButton} onClick={handleSearch}>
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Buscar imágenes... 🔎"
+            className={styles.searchInput}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button className={styles.searchButton} onClick={handleSearch}>
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>   
+        <ul className={styles.tagsList}>
+          {tags.map((tag) => (
+            <li key={tag} className={styles.tagItem}>
+              <button
+                className={styles.tagButton}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className={styles.tagsList}>
-        {tags.map((tag) => (
-          <li key={tag} className={styles.tagItem}>
-            <button
-              className={styles.tagButton}
-              onClick={() => handleTagClick(tag)}
-            >
-              {tag}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
 
     <div className={styles.rightSection}>
       <Link to={linkPath} className={styles.favButtonLink}>

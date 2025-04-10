@@ -5,14 +5,14 @@ import ImageCard from '../imageCard/ImageCard';
 
 const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
-  const { images, loading, error } = useSelector((state) => state.gallery);
+  const { images, loading, error, currentTag } = useSelector((state) => state.gallery);
 
-  // Al montar, si no hay imágenes, usa el tag "cats".
+  // Al montar, si no hay imágenes, se inicia con el tag guardado (o 'cats' por defecto)
   useEffect(() => {
     if (images.length === 0) {
-      dispatch(fetchImages({ tag: 'cats', reset: true }));
+      dispatch(fetchImages({ tag: currentTag, reset: true }));
     }
-  }, [dispatch, images.length]);
+  }, [dispatch, images.length, currentTag]);
 
   // Función para el scroll infinito
   // const handleScroll = useCallback(() => {
