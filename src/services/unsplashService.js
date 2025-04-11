@@ -1,16 +1,16 @@
 import { createApi } from 'unsplash-js';
 
 const unsplash = createApi({
-  accessKey: 'NycOqabIg11uxpFrmAsmOExL0IL0VIo8y_9s8JIetkM',
+  accessKey: import.meta.env.VITE_UNSPLASH_ACCESS_KEY, 
 });
 
-//  búsqueda con un tag
+// Función de búsqueda por tag 
 export const getRandomUnsplashImage = async (query = 'cats') => {
   try {
     const result = await unsplash.search.getPhotos({
       query,
       perPage: 15,
-      //  orientation: 'landscape',
+      // orientation: 'landscape', // Descomenta si lo necesitas
     });
 
     if (result.response && result.response.results.length > 0) {
@@ -21,6 +21,10 @@ export const getRandomUnsplashImage = async (query = 'cats') => {
           full: img.urls.full,
         },
         alt_description: img.alt_description || 'Imagen sin descripción',
+        likes: img.likes,
+        created_at: img.created_at,
+        width: img.width,
+        height: img.height,
       }));
     } else {
       console.error('No se encontraron imágenes para la búsqueda:', query);

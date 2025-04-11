@@ -28,6 +28,10 @@ export const fetchImages = createAsyncThunk(
         full: img.urls.full,
       },
       alt_description: img.alt_description || 'Imagen sin descripción',
+      likes: img.likes,          
+      created_at: img.created_at,   
+      width: img.width,             
+      height: img.height,           
     }));
   }
 );
