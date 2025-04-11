@@ -44,7 +44,7 @@
 }
 
 .cancelButton {
-  background-color: $button-primary; // Por ejemplo: #09ab6a
+  background-color: green; 
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -53,6 +53,6 @@
   transition: background 0.3s ease;
   
   &:hover {
-    background-color: $button-primary-hover; // Por ejemplo: #078e5b
+    background-color: darken(green, 10%);
   }
 }

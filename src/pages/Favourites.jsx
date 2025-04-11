@@ -2,23 +2,31 @@ import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ImageCard from '../components/imageCard/ImageCard';
-import { updateFavouriteDescription, removeFavourite, clearFavourites  } from '../redux/favouritesSlice';
+import ConfirmModal from '../components/Modals/ConfirmModal';
+import { updateFavouriteDescription, removeFavourite, clearFavourites } from '../redux/favouritesSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Favourites() {
   const dispatch = useDispatch();
   const favourites = useSelector(state => state.favourites.favourites);
-// Limpiar todos los favoritos
-  const handleClearAll = () => {
-    dispatch(clearFavourites());
-    console.log("Todos los favoritos fueron eliminados.");
-  };
+  // Estado para mostrar el modal de confirmación
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+    // Función para borrar todos los favoritos
+    const handleClearAll = () => {
+      setShowConfirmModal(true);
+    };
+  
+    const confirmClearAll = () => {
+      dispatch(clearFavourites());
+      setShowConfirmModal(false);
+      console.log("Todos los favoritos fueron eliminados.");
+    };
 
   // Estados para criterio de orden y dirección
   const [sortCriterion, setSortCriterion] = useState(null); // 'likes', 'date', 'width', 'height'
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' o 'desc'
-  
+
   // Función que cambia el criterio de orden y alterna la dirección si es el mismo
   const handleSort = (criterion) => {
     if (sortCriterion === criterion) {
@@ -88,7 +96,8 @@ function Favourites() {
         <button onClick={() => handleSort('height')}>
           Height {sortCriterion === 'height' && (sortOrder === 'asc' ? '↑' : '↓')}
         </button>
-        <button className="clearButton" onClick={handleClearAll}><FontAwesomeIcon icon={faTrash} /></button>
+        <button className="clearButton" onClick={handleClearAll}>
+          <FontAwesomeIcon icon={faTrash} /></button>
       </div>
 
       {sortedFavorites.length > 0 ? (
@@ -105,8 +114,16 @@ function Favourites() {
       ) : (
         <p>No hay imágenes favoritas.</p>
       )}
-      
+
       <div id="modal-root"></div>
+       {/* Modal de confirmación */}
+       {showConfirmModal && (
+        <ConfirmModal
+          message="¿Estás seguro que quieres borrar todas las imágenes?"
+          onConfirm={confirmClearAll}
+          onCancel={() => setShowConfirmModal(false)}
+        />
+      )}
     </div>
   );
 }
