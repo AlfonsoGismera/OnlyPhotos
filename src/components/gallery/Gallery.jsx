@@ -1,8 +1,8 @@
-// src/components/gallery/Gallery.jsx
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImages } from '../../redux/gallerySlice';
 import ImageCard from '../imageCard/ImageCard';
+import ScrollTopButton from '../buttons/ScrollTopButton'; // Importa el botón
 
 const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const handleScroll = useCallback(() => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
-      // Despacha la acción sin reset para concatenar imágenes
       dispatch(fetchImages({ tag: currentTag, reset: false }));
     }
   }, [dispatch, loading, currentTag]);
@@ -45,6 +44,9 @@ const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
         <p>No hay imágenes para mostrar.</p>
       )}
       {loading && <p>Cargando más imágenes...</p>}
+      
+      {/* Botón fijo para volver al inicio */}
+      <ScrollTopButton />
     </div>
   );
 };

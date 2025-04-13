@@ -35,7 +35,7 @@ export const fetchImages = createAsyncThunk(
     }
     return images.map((img) => ({
       // Si img.id se repite, se concatenará un valor aleatorio
-      id: `${img.id}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `${img.id}`,
       urls: {
         small: img.urls.small,
         full: img.urls.full,

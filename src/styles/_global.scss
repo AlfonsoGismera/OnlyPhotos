@@ -52,6 +52,26 @@ button {
   padding: 20px;
 }
 
+.scroll-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: $button-primary;
+  opacity: 0.8;  
+  padding: 11px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 1.5em;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: $button-primary-hover; 
+    opacity: 1;  
+  }
+}
+
+
 // Parte de favoritos
 .favouritesPage {
   padding: 20px;
