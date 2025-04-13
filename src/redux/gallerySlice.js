@@ -3,12 +3,12 @@ import { getRandomUnsplashImage } from '../services/unsplashService';
 
 // Extraer datos de localStorage o usar valores por defecto
 const savedImages = JSON.parse(localStorage.getItem('galleryImages')) || [];
-const savedTag = localStorage.getItem('currentTag') || 'cats';
+const savedTag = localStorage.getItem('currentTag') || '';
 
 // Thunk que recibe un objeto { tag, reset } y busca imágenes usando getRandomUnsplashImage.
 export const fetchImages = createAsyncThunk(
   'gallery/fetchImages',
-  async ({ tag = 'cats', reset = false } = {}) => {
+  async ({ tag = '', reset = false } = {}) => {
     // Usamos la función con el tag
     const images = await getRandomUnsplashImage(tag);
     if (!images || images.length === 0) {

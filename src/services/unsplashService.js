@@ -5,11 +5,11 @@ const unsplash = createApi({
 });
 
 // Función de búsqueda por tag 
-export const getRandomUnsplashImage = async (query = 'cats') => {
+export const getRandomUnsplashImage = async (query = '') => {
   try {
     const result = await unsplash.search.getPhotos({
       query,
-      perPage: 15,
+      perPage: 30,
       // orientation: 'landscape', // Descomenta si lo necesitas
     });
 
