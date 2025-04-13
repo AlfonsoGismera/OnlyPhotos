@@ -1,3 +1,4 @@
+// src/components/gallery/Gallery.jsx
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImages } from '../../redux/gallerySlice';
@@ -7,25 +8,26 @@ const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
   const { images, loading, error, currentTag } = useSelector((state) => state.gallery);
 
-  // Al montar, si no hay imágenes, se inicia con el tag guardado (o 'cats' por defecto)
+  // Al montar, si no hay imágenes, inicia la búsqueda con el tag guardado (array)
   useEffect(() => {
     if (images.length === 0) {
       dispatch(fetchImages({ tag: currentTag, reset: true }));
     }
   }, [dispatch, images.length, currentTag]);
 
-  // Función para el scroll infinito
-  // const handleScroll = useCallback(() => {
-  //   const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-  //   if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
-  //     dispatch(fetchImages());
-  //   }
-  // }, [dispatch, loading]);
+  // Lógica para el scroll infinito
+  const handleScroll = useCallback(() => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
+      // Despacha la acción sin reset para concatenar imágenes
+      dispatch(fetchImages({ tag: currentTag, reset: false }));
+    }
+  }, [dispatch, loading, currentTag]);
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, [handleScroll]);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
     <div className="gallery">

@@ -1,15 +1,27 @@
+// src/redux/gallerySlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getRandomUnsplashImage } from '../services/unsplashService';
 
-// Extraer datos de localStorage o usar valores por defecto
+// Extraer imágenes guardadas o usar un array vacío
 const savedImages = JSON.parse(localStorage.getItem('galleryImages')) || [];
-const savedTag = localStorage.getItem('currentTag') || '';
+
+// Extraer currentTag usando try/catch para manejar errores de JSON.parse
+let savedTag;
+try {
+  savedTag = JSON.parse(localStorage.getItem('currentTag'));
+} catch (error) {
+  savedTag = localStorage.getItem('currentTag') || 'cats';
+}
+// Si el valor es un string, lo envolvemos en un array
+if (typeof savedTag === 'string') {
+  savedTag = [savedTag];
+}
 
 // Thunk que recibe un objeto { tag, reset } y busca imágenes usando getRandomUnsplashImage.
 export const fetchImages = createAsyncThunk(
   'gallery/fetchImages',
-  async ({ tag = '', reset = false } = {}) => {
-    // Usamos la función con el tag
+  async ({ tag = ['cats'], reset = false } = {}) => {
+    // Llamamos a la función con el tag; puede ser un array o un string
     const images = await getRandomUnsplashImage(tag);
     if (!images || images.length === 0) {
       return [{
@@ -22,16 +34,17 @@ export const fetchImages = createAsyncThunk(
       }];
     }
     return images.map((img) => ({
-      id: img.id,
+      // Si img.id se repite, se concatenará un valor aleatorio
+      id: `${img.id}-${Math.random().toString(36).substr(2, 9)}`,
       urls: {
         small: img.urls.small,
         full: img.urls.full,
       },
       alt_description: img.alt_description || 'Imagen sin descripción',
-      likes: img.likes,          
-      created_at: img.created_at,   
-      width: img.width,             
-      height: img.height,           
+      likes: img.likes,
+      created_at: img.created_at,
+      width: img.width,
+      height: img.height,
     }));
   }
 );
@@ -44,7 +57,6 @@ const gallerySlice = createSlice({
     loading: false,
     error: null,
   },
-  
   extraReducers: (builder) => {
     builder
       .addCase(fetchImages.pending, (state) => {
@@ -52,23 +64,24 @@ const gallerySlice = createSlice({
         state.error = null;
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
-        // Revisa si se pasó reset; si es así, reemplaza la galería y actualiza el tag
+        // Revisamos si se pasó reset; de ser así, reemplazamos las imágenes
         const shouldReset = action.meta?.arg?.reset;
+        // Pasó un nuevo tag lo utilizamos, de lo contrario usamos el actual
         const newTag = action.meta?.arg?.tag || state.currentTag;
         state.currentTag = newTag;
 
         if (shouldReset) {
           state.images = action.payload;
         } else {
-          // Concatenar nuevas imágenes sin duplicados
+          // Concatenar nuevas imágenes sin duplicados, usando el id original
           const existingIds = new Set(state.images.map(img => img.id));
           const newImages = action.payload.filter(img => !existingIds.has(img.id));
           state.images = [...state.images, ...newImages];
         }
         state.loading = false;
-        // Guardar en localStorage tanto las imágenes como el tag actual
+        // Guardamos en localStorage las imágenes y el tag, usando JSON.stringify
         localStorage.setItem('galleryImages', JSON.stringify(state.images));
-        localStorage.setItem('currentTag', state.currentTag);
+        localStorage.setItem('currentTag', JSON.stringify(state.currentTag));
       })
       .addCase(fetchImages.rejected, (state, action) => {
         state.loading = false;
