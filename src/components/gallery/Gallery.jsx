@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImages } from '../../redux/gallerySlice';
 import ImageCard from '../imageCard/ImageCard';
-import ScrollTopButton from '../buttons/ScrollTopButton'; // Importa el botón
+import ScrollTopButton from '../buttons/ScrollTopButton'; 
 
 const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
