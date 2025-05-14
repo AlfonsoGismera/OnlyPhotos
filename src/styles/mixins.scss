@@ -1,3 +1,4 @@
+@use "./variables" as *;
 @mixin button-style($background-color, $text-color, $padding: 0.5rem 1rem, $border-radius: 5px) {
   background-color: $background-color;
   color: $text-color;
