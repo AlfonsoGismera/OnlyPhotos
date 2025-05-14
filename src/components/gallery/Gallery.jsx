@@ -2,20 +2,23 @@ import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImages } from '../../redux/gallerySlice';
 import ImageCard from '../imageCard/ImageCard';
-import ScrollTopButton from '../buttons/ScrollTopButton'; 
+import ScrollTopButton from '../buttons/ScrollTopButton';
 
 const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
   const dispatch = useDispatch();
   const { images, loading, error, currentTag } = useSelector((state) => state.gallery);
 
-  // Al montar, si no hay imágenes, inicia la búsqueda con el tag guardado (array)
   useEffect(() => {
-    if (images.length === 0) {
+    // Comprueba si hay una búsqueda activa (currentTag tiene un valor)
+    if (!currentTag) {
+      // Si no hay búsqueda activa, inicia la búsqueda de "MADRID"
+      dispatch(fetchImages({ tag: 'MADRID', reset: true }));
+    } else if (images.length === 0) {
+      // Si hay un currentTag pero no hay imágenes, intenta cargar con ese tag
       dispatch(fetchImages({ tag: currentTag, reset: true }));
     }
   }, [dispatch, images.length, currentTag]);
 
-  // Lógica para el scroll infinito
   const handleScroll = useCallback(() => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 100 && !loading) {
@@ -44,7 +47,7 @@ const Gallery = ({ isFavourite = false, onDescriptionSave }) => {
         <p>No hay imágenes para mostrar.</p>
       )}
       {loading && <p>Cargando más imágenes...</p>}
-      
+
       {/* Botón fijo para volver al inicio */}
       <ScrollTopButton />
     </div>
