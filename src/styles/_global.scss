@@ -96,7 +96,7 @@ button {
   transition: opacity 0.3s ease;
 
   &:hover {
-    background: darken(red, 10%);
+    background: brightness(red, 10%);
   }
 }
 // Usamos grid para favoritos  ya que ahora no queremos que tenga distintos tamaños

@@ -39,7 +39,7 @@
   transition: background 0.3s ease;
   
   &:hover {
-    background-color: darken(#d9534f, 10%);
+    background-color: brightness(#d9534f, 10%);
   }
 }
 
@@ -53,6 +53,6 @@
   transition: background 0.3s ease;
   
   &:hover {
-    background-color: darken(green, 10%);
+    background-color: brightness(green, 10%);
   }
 }

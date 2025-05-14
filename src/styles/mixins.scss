@@ -8,6 +8,6 @@
   transition: background-color $transition-duration ease;
 
   &:hover {
-    background-color: darken($background-color, 10%); 
+    background-color: brightness($background-color, 10%); 
   }
 }
