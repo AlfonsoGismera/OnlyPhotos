@@ -23,7 +23,7 @@ const ImageCard = ({ img, isFavourite, onDescriptionSave }) => {
 
   // Delete
   const handleDelete = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     dispatch(removeFavourite(img.id));
     console.log(`Deleted image with ID: ${img.id}`);
   };
@@ -35,25 +35,22 @@ const ImageCard = ({ img, isFavourite, onDescriptionSave }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
-        src={img.urls.small}
-        alt={img.alt_description || 'Imagen'}
-        onClick={() => {
-          console.log("Clic en la imagen: abriendo modal");
-          setModalOpen(true);
-        }}
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = fondo_error;
-        }}
-      />
+      <a href={img.urls.full} target="_blank" rel="noopener noreferrer" className="image-link">
+        <img
+          src={img.urls.small}
+          alt={img.alt_description || 'Imagen'}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = fondo_error;
+          }}
+        />
+      </a>
       {isHovered && (
         <div className="overlay">
           <DownloadButton imageUrl={img.urls.full} filename={`${img.id}.jpg`} />
           {isFavourite && (
             <EditButton onClick={() => setModalOpen(true)} />
           )}
-          {/* Si es favorito, muestra el botón de eliminar, si no, muestra el de like */}
           {isFavourite ? (
             <DeleteButton onClick={handleDelete} />
           ) : (
