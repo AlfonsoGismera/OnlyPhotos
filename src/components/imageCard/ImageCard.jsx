@@ -4,7 +4,7 @@ import LikeButton from '../buttons/ButtonLike';
 import DownloadButton from '../buttons/ButtonDownload';
 import DeleteButton from '../buttons/ButtonDelete';
 import EditButton from '../buttons/ButtonEdit';
-import ImageModal from '../modals/ImageModal';
+import ImageModal from '../Modals/ImageModal';
 import fondo_error from '../../assets/fondo_error.jpg';
 import { addFavourite, removeFavourite } from '../../redux/favouritesSlice';
 import './ImageCard.scss';
