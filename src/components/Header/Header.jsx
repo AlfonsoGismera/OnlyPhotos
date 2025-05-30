@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'; // Importa useSelector si necesitas el estado de la búsqueda
+import { useDispatch, useSelector } from 'react-redux'; 
 import styles from './Header.module.scss';
 import logoPlaceholder from '../../assets/Logo.png';
 import fondo_error from '../../assets/fondo_error.jpg';
@@ -8,7 +8,7 @@ import { getRandomUnsplashImage } from '../../services/unsplashService';
 import { fetchImages } from '../../redux/gallerySlice';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faCheck } from '@fortawesome/free-solid-svg-icons'; // Importa el icono de check
+import { faSearch, faCheck } from '@fortawesome/free-solid-svg-icons'; 
 
 function Header() {
   const dispatch = useDispatch();
@@ -21,10 +21,10 @@ function Header() {
   const tags = ['Naturaleza', 'Animales', 'Ciudades', 'Retratos', 'Abstracto'];
   const [headerBackground, setHeaderBackground] = useState('');
 
-  // Estado para el input de búsqueda
+
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Estado para almacenar la etiqueta activa
+
   const [activeTag, setActiveTag] = useState(null);
 
   // Si necesitas acceder al último tag buscado desde Redux:
@@ -47,16 +47,15 @@ function Header() {
     };
 
     fetchHeaderImage();
-    // Si quieres que la etiqueta activa se mantenga al volver a la página principal
     // setActiveTag(lastSearchedTag);
   }, [isHomePage /*, lastSearchedTag */]);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
       dispatch(fetchImages({ tag: searchQuery, reset: true }));
-      setActiveTag(searchQuery.trim()); // Actualiza la etiqueta activa
+      setActiveTag(searchQuery.trim());
     } else {
-      setActiveTag(null); // Limpia la etiqueta activa si la búsqueda está vacía
+      setActiveTag(null); 
     }
   };
 
@@ -69,7 +68,7 @@ function Header() {
 
   const handleTagClick = (tag) => {
     dispatch(fetchImages({ tag, reset: true }));
-    setActiveTag(tag); // Actualiza la etiqueta activa
+    setActiveTag(tag); 
   };
 
   return (
