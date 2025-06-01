@@ -16,6 +16,7 @@ function Header() {
   const isHomePage = location.pathname === '/';
   const linkText = isHomePage ? 'Favoritos ❣️' : 'Home 🏠';
   const linkPath = isHomePage ? '/favourites' : '/';
+  
 
   // Tags predefinidos para búsquedas rápidas
   const tags = ['Naturaleza', 'Animales', 'Ciudades', 'Retratos', 'Abstracto'];
