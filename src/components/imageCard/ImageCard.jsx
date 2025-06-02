@@ -27,6 +27,7 @@ const ImageCard = ({ img, isFavourite, onDescriptionSave }) => {
     dispatch(removeFavourite(img.id));
     console.log(`Deleted image with ID: ${img.id}`);
   };
+  
 
   // Edit description
   return (
